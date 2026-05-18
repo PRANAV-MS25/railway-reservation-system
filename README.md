@@ -49,3 +49,40 @@ The system entryway is protected by a local credential verification shield. Use 
 |-------------------|-------------------|---------------------------|
 | `username` | VARCHAR | Unique access identification identifier (`Pranav0004`) |
 | `password` | VARCHAR | Case-sensitive secure gateway verification pass (`Bobby0004`) |
+
+
+⚙️ Installation & Setup Instructions
+Follow these structured development environment initialization parameters to spin up the local system workspace.
+
+1. Verify Prerequisites
+Ensure your operating terminal has Python 3.10 or higher installed alongside the pip dependency manager:
+
+Bash
+python --version
+pip --version
+2. Environment Dependencies Setup
+Install the necessary graphical bindings to compile the application widgets cleanly:
+
+Bash
+pip install PyQt6
+3. Move Into Your Work Directory
+Jump into the local directory containing the source execution scripts:
+
+Bash
+d:
+cd \railway-python-dashboard
+4. Run the Core System Thread
+Execute the master controller file to build the system layout windows:
+
+Bash
+python main.py
+📁 Repository Workspace Blueprint
+Plaintext
+railway-reservation-system/
+│
+├── main.py          # Master application driver, layout manager, and global timer thread
+├── login.py         # Administrative credential scanner and gatekeeper widget layout
+└── journey.py       # Core transaction engine, pricing matrices, and dynamic history data frames
+👤 Structural Engineering Group
+Lead Project Architect: PRANAV M
+
