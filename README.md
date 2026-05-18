@@ -41,11 +41,11 @@ System updates History Ledger -> Dynamic view refreshes with new record tracking
 
 # 🛠️ Built With
 
-| Platform Element | System Specification |
-| :--- | :--- |
-| **Language Platform** | Python 3.10+ |
-| **Core Graphical Engine** | PyQt6 (Qt v6 Desktop Development Kit) |
-| **Design Pattern** | Component-based UI Stack Architecture |
+|Platform Element|System Specification|
+|:---|:---|
+|**Language Platform**|Python 3.10+|
+|**Core Graphical Engine**|PyQt6 (Qt v6 Desktop Development Kit)|
+|**Design Pattern**|Component-based UI Stack Architecture|
 
 ---
 
