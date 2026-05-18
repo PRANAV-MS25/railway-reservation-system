@@ -28,7 +28,20 @@ Live engine computes sector price matrix -> Displays calculated fare instantly
 Admin clicks "Confirm Booking" -> Commits record to memory ledger & spawns confirmation window
       ↓
 System updates History Ledger -> Dynamic view refreshes with new record tracking indices
-🛠️ Built WithLanguage Platform: Python 3.10+Core Graphical Engine: PyQt6 (Qt v6 Desktop Development Kit)Design Pattern: Component-based UI Stack Architecture📊 Core Runtime Data ModelsSince the application runs a lightweight, ultra-fast structural operational design, data records are tracked via active memory structures mimicking schema arrays.1. Account Identity Array (login.py)Variable AttributeVirtual Field TypeDescription / ConstraintsusernameVARCHARUnique access identification identifier (Pranav0004)passwordVARCHARCase-sensitive secure gateway verification pass (Bobby0004)2. Journey Transaction Array (journey.py)Variable AttributeVirtual Field TypeDescription / Constraintspassenger_nameVARCHARClear-text traveler metadata stringsource_fromVARCHAROrigin station boundary picked from combobox indexingdestination_targetVARCHARTerminal arrival target stationjourney_dateDATE (yyyy-MM-dd)Calendar widget selection timestamp valuefare_clearedDECIMAL / CURRENCYEvaluated sector pricing finalized by calculation engine⚙️ Installation & Setup InstructionsFollow these structured development environment initialization parameters to spin up the local system workspace.1. Verify PrerequisitesEnsure your operating terminal has Python 3.10 or higher installed alongside the pip dependency manager.Bashpython --version
+---
+🛠️ Built With Language Platform:
+Python 3.10+Core
+Graphical Engine: PyQt6 (Qt v6 Desktop Development Kit)
+Design Pattern: Component-based UI Stack Architecture
+---
+📊 Core Runtime Data Models
+Since the application runs a lightweight, ultra-fast structural operational design, data records are tracked via active memory structures mimicking schema arrays.
+1. Account Identity Array (login.py)
+|Variable Attribute|Virtual Field Type|Description / Constraints|
+|username|VARCHAR|Unique access identification identifier (Pranav0004)
+|password|VARCHAR|Case-sensitive secure gateway verification pass (Bobby0004)|
+---
+2. Journey Transaction Array (journey.py)Variable AttributeVirtual Field TypeDescription / Constraintspassenger_nameVARCHARClear-text traveler metadata stringsource_fromVARCHAROrigin station boundary picked from combobox indexingdestination_targetVARCHARTerminal arrival target stationjourney_dateDATE (yyyy-MM-dd)Calendar widget selection timestamp valuefare_clearedDECIMAL / CURRENCYEvaluated sector pricing finalized by calculation engine⚙️ Installation & Setup InstructionsFollow these structured development environment initialization parameters to spin up the local system workspace.1. Verify PrerequisitesEnsure your operating terminal has Python 3.10 or higher installed alongside the pip dependency manager.Bashpython --version
 pip --version
 2. Environment Dependencies SetupInstall the necessary graphical bindings to compile the application widgets cleanly:Bashpip install PyQt6
 3. Move Into Your Work DirectoryJump into the local directory containing the source execution scripts:Bashd:
