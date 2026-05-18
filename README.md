@@ -4,67 +4,39 @@ An elegant, high-performance desktop application migrating legacy railway proces
 
 ---
 
-## 🚀 Core Architectural Frameworks
+## 🔐 Default Administrative Credentials
 
-* **Secure Portal Protection:** State-of-the-art credential screening module guarding dashboard entry frameworks against unauthorized access vectors.
-* **Dynamic Route & Fare Calculator:** Live background calculation matrix that instantly computes multi-sector railway fares based on active combobox selection inputs.
-* **Automated Ticket Ledger:** Real-time ledger update engine that logs passenger metadata, route choices, and cleared travel costs instantly into active memory.
-* **Live Schedule Registry:** High-visibility data table rendering active train route schedules, departure matrix indices, and base class costs.
-* **Continuous Time Syncer:** Thread-friendly background timer looping execution parameters every second to display precise, live temporal stamps on the header.
+The system entryway is protected by a local credential verification shield. Use the authorized credentials below to clear the portal:
 
----
-
-## 🛠️ Built With
-
-* **Language:** Python 3.10+
-* **UI Engine:** PyQt6 (Qt v6 Desktop Development Kit)
-* **Design Pattern:** Component-based UI Stack Architecture
+| Role | Authorized Username | System Access Password |
+| :--- | :--- | :--- |
+| **System Administrator** | `Pranav0004` | `Bobby0004` |
 
 ---
 
-## 🏁 Quick Start & Runtime Deployment
+## 🔄 System Flow Matrix
 
-### 1. Environment Initialization
-Ensure you have the core Qt library bindings installed inside your execution environment:
-```bash
-pip install PyQt6
-
-Ah! Got it. You want to skip the command line entirely for this step and just paste it straight into GitHub using your web browser. That is actually way faster!Here is exactly how to do it in 4 quick clicks:🛠️ How to Paste it Directly on GitHub:Click this link to go straight to your repository: PRANAV-MS25/railway-reservation-systemAt the top of your file list, look for README.md and click on it.In the top right corner of the file view, click the Pencil Icon ✏️ (Edit this file).Select everything inside the editor text box, delete it, and paste this exact code block below:Markdown# 🎫 Advanced Railway Reservation & Operational Management System
-
-An elegant, high-performance desktop application migrating legacy railway processing architectures into a modernized, fluid Python 3 ecosystem driven by **PyQt6**. Built with structural UI/UX paradigms, a dynamic station fare engine, active calendar syncing, and live session verification tracking.
-
----
-
-## 🚀 Core Architectural Frameworks
-
-* **Secure Portal Protection:** State-of-the-art credential screening module guarding dashboard entry frameworks against unauthorized access vectors.
-* **Dynamic Route & Fare Calculator:** Live background calculation matrix that instantly computes multi-sector railway fares based on active combobox selection inputs.
-* **Automated Ticket Ledger:** Real-time ledger update engine that logs passenger metadata, route choices, and cleared travel costs instantly into active memory.
-* **Live Schedule Registry:** High-visibility data table rendering active train route schedules, departure matrix indices, and base class costs.
-* **Continuous Time Syncer:** Thread-friendly background timer looping execution parameters every second to display precise, live temporal stamps on the header.
-
----
-
-## 🛠️ Built With
-
-* **Language:** Python 3.10+
-* **UI Engine:** PyQt6 (Qt v6 Desktop Development Kit)
-* **Design Pattern:** Component-based UI Stack Architecture
-
----
-
-## 🏁 Quick Start & Runtime Deployment
-
-### 1. Environment Initialization
-Ensure you have the core Qt library bindings installed inside your execution environment:
-```bash
-pip install PyQt6
-2. Launching the SystemNavigate directly to your root operational workspace and spin up the master application runtime thread:Bashd:
+```text
+Admin inputs credentials -> Verifies against secure memory block
+      ↓
+Gateway authentication success -> Prompts MainWindow desktop workspace
+      ↓
+Admin selects "Book Ticket" tab -> Inputs Passenger details & Route parameters
+      ↓
+Live engine computes sector price matrix -> Displays calculated fare instantly
+      ↓
+Admin clicks "Confirm Booking" -> Commits record to memory ledger & spawns confirmation window
+      ↓
+System updates History Ledger -> Dynamic view refreshes with new record tracking indices
+🛠️ Built WithLanguage Platform: Python 3.10+Core Graphical Engine: PyQt6 (Qt v6 Desktop Development Kit)Design Pattern: Component-based UI Stack Architecture📊 Core Runtime Data ModelsSince the application runs a lightweight, ultra-fast structural operational design, data records are tracked via active memory structures mimicking schema arrays.1. Account Identity Array (login.py)Variable AttributeVirtual Field TypeDescription / ConstraintsusernameVARCHARUnique access identification identifier (Pranav0004)passwordVARCHARCase-sensitive secure gateway verification pass (Bobby0004)2. Journey Transaction Array (journey.py)Variable AttributeVirtual Field TypeDescription / Constraintspassenger_nameVARCHARClear-text traveler metadata stringsource_fromVARCHAROrigin station boundary picked from combobox indexingdestination_targetVARCHARTerminal arrival target stationjourney_dateDATE (yyyy-MM-dd)Calendar widget selection timestamp valuefare_clearedDECIMAL / CURRENCYEvaluated sector pricing finalized by calculation engine⚙️ Installation & Setup InstructionsFollow these structured development environment initialization parameters to spin up the local system workspace.1. Verify PrerequisitesEnsure your operating terminal has Python 3.10 or higher installed alongside the pip dependency manager.Bashpython --version
+pip --version
+2. Environment Dependencies SetupInstall the necessary graphical bindings to compile the application widgets cleanly:Bashpip install PyQt6
+3. Move Into Your Work DirectoryJump into the local directory containing the source execution scripts:Bashd:
 cd \railway-python-dashboard
-python main.py
-🔐 System Access ConfigurationsThe default security framework holds pre-authorized gateway profiles matching the encrypted parameters below:Configuration ParameterOperational ValueSystem UsernamePranav0004System PasswordBobby0004📁 System Architecture WorkspacePlaintextrailway-python-dashboard/
+4. Run the Core System ThreadExecute the master controller file to build the system layout windows:Bashpython main.py
+📁 Repository Workspace BlueprintPlaintextrailway-reservation-system/
 │
-├── main.py          # Master application driver, sidebar control layout, and stack supervisor
-├── login.py         # Entryway security shield layout and credentials processor
-└── journey.py       # Core transaction engine, pricing models, and history log tables
-👤 System Development GroupLead Structural Developer: PRANAV M
+├── main.py          # Master application driver, layout manager, and global timer thread
+├── login.py         # Administrative credential scanner and gatekeeper widget layout
+└── journey.py       # Core transaction engine, pricing matrices, and dynamic history data frames
+👤 Structural Engineering GroupLead Project Architect: PRANAV M
