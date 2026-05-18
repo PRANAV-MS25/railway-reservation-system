@@ -33,19 +33,17 @@ System updates History Ledger -> Dynamic view refreshes with new record tracking
 
 # 🛠️ Built With
 
-* **Language Platform:** Python 3.10+
-* **Core Graphical Engine:** PyQt6 (Qt v6 Desktop Development Kit)
-* **Design Pattern:** Component-based UI Stack Architecture
+| Platform Element | System Specification |
+| :--- | :--- |
+| **Language Platform** | Python 3.10+ |
+| **Core Graphical Engine** | PyQt6 (Qt v6 Desktop Development Kit) |
+| **Design Pattern** | Component-based UI Stack Architecture |
 
 ---
 
-Platform Element,System Specification
-Language Platform,Python 3.10+
-Core Graphical Engine,PyQt6 (Qt v6 Desktop Development Kit)
-Design Pattern,Component-based UI Stack Architecture
+# 📊 Core Runtime Data Models
 
----
-
-Variable Attribute,Virtual Field Type,Description / Constraints
-username,VARCHAR,Unique access identification identifier (Pranav0004)
-password,VARCHAR,Case-sensitive secure gateway verification pass (Bobby0004)
+| Variable Attribute | Virtual Field Type | Description / Constraints |
+| :--- | :--- | :--- |
+| `username` | `VARCHAR` | Unique access identification identifier (`Pranav0004`) |
+| `password` | `VARCHAR` | Case-sensitive secure gateway verification pass (`Bobby0004`) |
