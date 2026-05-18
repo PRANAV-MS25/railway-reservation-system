@@ -28,3 +28,44 @@ Live engine computes sector price matrix -> Displays calculated fare instantly
 Admin clicks "Confirm Booking" -> Commits record to memory ledger & spawns confirmation window
       ↓
 System updates History Ledger -> Dynamic view refreshes with new record tracking indices
+
+---
+
+# 🛠️ Built With
+
+* **Language Platform:** Python 3.10+
+* **Core Graphical Engine:** PyQt6 (Qt v6 Desktop Development Kit)
+* **Design Pattern:** Component-based UI Stack Architecture
+
+---
+
+# 🛠️ Built With
+
+| Platform Element | System Specification |
+| :--- | :--- |
+| **Language Platform** | Python 3.10+ |
+| **Core Graphical Engine** | PyQt6 (Qt v6 Desktop Development Kit) |
+| **Design Pattern** | Component-based UI Stack Architecture |
+
+---
+
+# 📊 Core Runtime Data Models
+
+Since the application runs a lightweight, ultra-fast structural operational design, data records are tracked via active memory structures mimicking schema arrays.
+
+### 1. Account Identity Array (`login.py`)
+
+| Variable Attribute | Virtual Field Type | Description / Constraints |
+| :--- | :--- | :--- |
+| `username` | `VARCHAR` | Unique access identification identifier (`Pranav0004`) |
+| `password` | `VARCHAR` | Case-sensitive secure gateway verification pass (`Bobby0004`) |
+
+### 2. Journey Transaction Array (`journey.py`)
+
+| Variable Attribute | Virtual Field Type | Description / Constraints |
+| :--- | :--- | :--- |
+| `passenger_name` | `VARCHAR` | Clear-text traveler metadata string |
+| `source_from` | `VARCHAR` | Origin station boundary picked from combobox indexing |
+| `destination_target` | `VARCHAR` | Terminal arrival target station |
+| `journey_date` | `DATE` | Calendar widget selection timestamp value |
+| `fare_cleared` | `DECIMAL` | Evaluated sector pricing finalized by calculation engine |
