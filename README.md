@@ -49,23 +49,6 @@ System updates History Ledger -> Dynamic view refreshes with new record tracking
 
 ---
 
-# 📊 Core Runtime Data Models
-
-Since the application runs a lightweight, ultra-fast structural operational design, data records are tracked via active memory structures mimicking schema arrays.
-
-### 1. Account Identity Array (`login.py`)
-
-| Variable Attribute | Virtual Field Type | Description / Constraints |
-| :--- | :--- | :--- |
-| `username` | `VARCHAR` | Unique access identification identifier (`Pranav0004`) |
-| `password` | `VARCHAR` | Case-sensitive secure gateway verification pass (`Bobby0004`) |
-
-### 2. Journey Transaction Array (`journey.py`)
-
-| Variable Attribute | Virtual Field Type | Description / Constraints |
-| :--- | :--- | :--- |
-| `passenger_name` | `VARCHAR` | Clear-text traveler metadata string |
-| `source_from` | `VARCHAR` | Origin station boundary picked from combobox indexing |
-| `destination_target` | `VARCHAR` | Terminal arrival target station |
-| `journey_date` | `DATE` | Calendar widget selection timestamp value |
-| `fare_cleared` | `DECIMAL` | Evaluated sector pricing finalized by calculation engine |
+Variable Attribute,Virtual Field Type,Description / Constraints
+username,VARCHAR,Unique access identification identifier (Pranav0004)
+password,VARCHAR,Case-sensitive secure gateway verification pass (Bobby0004)
