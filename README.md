@@ -14,36 +14,38 @@ The system entryway is protected by a local credential verification shield. Use 
 
 ---
 
-## 🔄 System Flow Matrix
+# 🔄 System Flow Matrix
 
-```text
-Admin inputs credentials -> Verifies against secure memory block
-      ↓
-Gateway authentication success -> Prompts MainWindow desktop workspace
-      ↓
-Admin selects "Book Ticket" tab -> Inputs Passenger details & Route parameters
-      ↓
-Live engine computes sector price matrix -> Displays calculated fare instantly
-      ↓
-Admin clicks "Confirm Booking" -> Commits record to memory ledger & spawns confirmation window
-      ↓
-System updates History Ledger -> Dynamic view refreshes with new record tracking indices
+| Step | Process Description |
+|------|---------------------|
+| 1 | Admin inputs credentials |
+| 2 | Verifies against secure memory block |
+| 3 | Gateway authentication success |
+| 4 | Prompts MainWindow desktop workspace |
+| 5 | Admin selects "Book Ticket" tab |
+| 6 | Inputs Passenger details & Route parameters |
+| 7 | Live engine computes sector price matrix |
+| 8 | Displays calculated fare instantly |
+| 9 | Admin clicks "Confirm Booking" |
+| 10 | Commits record to memory ledger & spawns confirmation window |
+| 11 | System updates History Ledger |
+| 12 | Dynamic view refreshes with new record tracking indices |
 
 ---
 
 # 🛠️ Built With
 
 | Platform Element | System Specification |
-| :--- | :--- |
+|------------------|---------------------|
 | **Language Platform** | Python 3.10+ |
 | **Core Graphical Engine** | PyQt6 (Qt v6 Desktop Development Kit) |
-| **Design Pattern** | Component-based UI Stack Architecture |
+| **Design Pattern** | Component-Based UI Stack Architecture |
 
 ---
 
 # 📊 Core Runtime Data Models
 
 | Variable Attribute | Virtual Field Type | Description / Constraints |
-| :--- | :--- | :--- |
-| `username` | `VARCHAR` | Unique access identification identifier (`Pranav0004`) |
-| `password` | `VARCHAR` | Case-sensitive secure gateway verification pass (`Bobby0004`) |
+|-------------------|-------------------|---------------------------|
+| `username` | VARCHAR | Unique access identification identifier (`Pranav0004`) |
+| `password` | VARCHAR | Case-sensitive secure gateway verification pass (`Bobby0004`) |
