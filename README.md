@@ -27,7 +27,7 @@ RailPulse is a modern, full-stack railway reservation and live tracking web plat
 
 | Login & Authentication | Train Search & Selection |
 | :---: | :---: |
-| ![Login Page](login.png) | ![Train Search](train and coach.png) |
+| ![Login Page](login.png) | ![Train Search](train_and_coach.png) |
 
 | Booking & Passenger Details | Payment Gateway Interface |
 | :---: | :---: |
