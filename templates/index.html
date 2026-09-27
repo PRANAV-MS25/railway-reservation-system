@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailPulse - Traditional Railway Reservation & Live Tracking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        #map { height: 400px; width: 100%; border-radius: 0.75rem; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex justify-between items-center shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="bg-blue-600 p-2 rounded-lg text-white">
+                <i class="fa-solid fa-train text-xl"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold tracking-wide">RailPulse IRIS Engine</h1>
+                <p class="text-xs text-slate-400">Traditional Passenger Reservation & Telemetry Suite</p>
+            </div>
+        </div>
+        <div class="flex space-x-3">
+            <button onclick="switchTab('search')" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-sm font-medium transition">Book Ticket</button>
+            <button onclick="switchTab('tracking')" class="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition">Live Tracking & PNR</button>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto p-6 space-y-6">
+
+        <!-- TAB 1: BOOKING WORKFLOW -->
+        <div id="tab-search" class="space-y-6">
+            
+            <!-- Card 1: Journey Search -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl">
+                <h2 class="text-base font-semibold mb-4 flex items-center gap-2">
+                    <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded-md font-bold">STEP 1</span> Plan Your Journey
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">From Station</label>
+                        <select id="search-from" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200">
+                            <option value="KSR Bengaluru (SBC)">KSR Bengaluru (SBC)</option>
+                            <option value="Mumbai Central (MMCT)">Mumbai Central (MMCT)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">To Station</label>
+                        <select id="search-to" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200">
+                            <option value="New Delhi (NDLS)">New Delhi (NDLS)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Journey Date</label>
+                        <input type="date" id="journey-date" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200">
+                    </div>
+                </div>
+                <button onclick="findTrains()" class="mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-6 py-2 rounded-lg text-sm transition shadow-lg">
+                    Search Available Trains
+                </button>
+            </div>
+
+            <!-- Card 2: Train Results Matrix -->
+            <div id="trains-results-card" class="hidden bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl space-y-4">
+                <h2 class="text-base font-semibold flex items-center gap-2">
+                    <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded-md font-bold">STEP 2</span> Select Train & Class
+                </h2>
+                <div id="trains-list" class="space-y-3"></div>
+            </div>
+
+            <!-- Card 3: Passenger Details Input Form -->
+            <div id="passenger-form-card" class="hidden bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl space-y-4">
+                <h2 class="text-base font-semibold flex items-center gap-2">
+                    <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded-md font-bold">STEP 3</span> Passenger Manifest Details
+                </h2>
+                <div id="selected-train-summary" class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-sm text-slate-300"></div>
+                
+                <div class="space-y-3 border-t border-slate-800 pt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Passenger Full Name</label>
+                            <input type="text" id="p-name" placeholder="e.g. Pranav M" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Age</label>
+                            <input type="number" id="p-age" placeholder="22" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Gender</label>
+                            <select id="p-gender" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Berth Preference</label>
+                            <select id="p-berth" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200">
+                                <option value="Lower">Lower (LB)</option>
+                                <option value="Middle">Middle (MB)</option>
+                                <option value="Upper">Upper (UB)</option>
+                                <option value="Side Lower">Side Lower (SL)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="submitBooking()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 rounded-lg text-sm transition shadow-lg">
+                    Proceed to Payment & Generate Ticket
+                </button>
+            </div>
+
+            <!-- Card 4: Digital Ticket Receipt -->
+            <div id="ticket-receipt-card" class="hidden bg-slate-900 border border-emerald-500/40 rounded-xl p-6 shadow-2xl space-y-4">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-emerald-600 p-2 rounded-lg text-white"><i class="fa-solid fa-check text-lg"></i></div>
+                        <div>
+                            <h3 class="font-bold text-lg text-emerald-400">Booking Confirmed Successfully</h3>
+                            <p class="text-xs text-slate-400">Electronic Reservation Slip (ERS)</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-slate-400 block">PNR NUMBER</span>
+                        <span id="ticket-pnr" class="text-lg font-mono font-bold text-blue-400"></span>
+                    </div>
+                </div>
+
+                <div id="ticket-details-box" class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 text-sm"></div>
+
+                <button onclick="jumpToTracking()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2.5 rounded-lg text-sm transition">
+                    Track This Train Live on Map
+                </button>
+            </div>
+
+        </div>
+
+        <!-- TAB 2: LIVE TRACKING WORKFLOW -->
+        <div id="tab-tracking" class="hidden space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl space-y-4">
+                <h2 class="text-base font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-satellite-dish text-blue-500"></i> Enter PNR for Real-Time Telemetry Tracking
+                </h2>
+                <div class="flex gap-3">
+                    <input type="text" id="track-pnr-input" placeholder="Enter PNR (e.g. 280-XXXXXXXX)" class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200">
+                    <button onclick="fetchTrackingData()" class="bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-lg text-sm font-medium transition">Track Live</button>
+                </div>
+            </div>
+
+            <div id="map-container-card" class="hidden bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl space-y-4">
+                <div class="flex justify-between items-center">
+                    <h3 id="tracking-train-title" class="font-semibold text-base text-slate-200"></h3>
+                    <span id="live-status-badge" class="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-xs font-bold border border-emerald-500/30">TRAIN RUNNING ON TIME</span>
+                </div>
+                <div id="map"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        let selectedTrainData = null;
+        let map = null;
+        let trainMarker = null;
+
+        document.getElementById('journey-date').valueAsDate = new Date();
+
+        function switchTab(tab) {
+            document.getElementById('tab-search').classList.toggle('hidden', tab !== 'search');
+            document.getElementById('tab-tracking').classList.toggle('hidden', tab !== 'tracking');
+        }
+
+        async function findTrains() {
+            const from = document.getElementById('search-from').value;
+            const to = document.getElementById('search-to').value;
+
+            const res = await fetch('/api/search_trains', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ from, to })
+            });
+            const data = await res.json();
+
+            const container = document.getElementById('trains-list');
+            container.innerHTML = data.trains.map(t => `
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex justify-between items-center">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-blue-400">${t.train_no}</span>
+                            <span class="font-semibold text-slate-200">${t.train_name}</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-1">${t.from} (${t.departure}) &rarr; ${t.to} (${t.arrival}) | Duration: ${t.duration}</p>
+                    </div>
+                    <button onclick='selectTrain(${JSON.stringify(t)})' class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+                        Book Now
+                    </button>
+                </div>
+            `).join('');
+
+            document.getElementById('trains-results-card').classList.remove('hidden');
+        }
+
+        function selectTrain(train) {
+            selectedTrainData = train;
+            document.getElementById('selected-train-summary').innerHTML = `
+                <b>Selected Train:</b> ${train.train_no} - ${train.train_name}<br>
+                <b>Route:</b> ${train.from} to ${train.to} (${train.departure})
+            `;
+            document.getElementById('passenger-form-card').classList.remove('hidden');
+            document.getElementById('passenger-form-card').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function submitBooking() {
+            const name = document.getElementById('p-name').value;
+            const age = document.getElementById('p-age').value;
+            const gender = document.getElementById('p-gender').value;
+            const berth = document.getElementById('p-berth').value;
+
+            if (!name || !age) {
+                alert("Please fill in passenger name and age.");
+                return;
+            }
+
+            const payload = {
+                train_no: selectedTrainData.train_no,
+                train_name: selectedTrainData.train_name,
+                from: selectedTrainData.from,
+                to: selectedTrainData.to,
+                date: document.getElementById('journey-date').value,
+                train_class: "AC 3-Tier (3A)",
+                quota: "General Quota",
+                passengers: [{ name, age, gender, berth }],
+                fare: "₹ 1,650.00"
+            };
+
+            const res = await fetch('/api/book_ticket', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+
+            if (data.success) {
+                document.getElementById('ticket-pnr').innerText = data.pnr;
+                document.getElementById('ticket-details-box').innerHTML = `
+                    <div class="grid grid-cols-2 gap-2 text-xs text-slate-300">
+                        <div><b>Train:</b> ${data.ticket.train_no} - ${data.ticket.train_name}</div>
+                        <div><b>Date:</b> ${data.ticket.date}</div>
+                        <div><b>From:</b> ${data.ticket.from}</div>
+                        <div><b>To:</b> ${data.ticket.to}</div>
+                        <div><b>Class:</b> ${data.ticket.class} (${data.ticket.quota})</div>
+                        <div><b>Booking Time:</b> ${data.ticket.booking_time}</div>
+                    </div>
+                    <div class="border-t border-slate-800 pt-3 mt-2">
+                        <p class="text-xs uppercase text-slate-400 mb-1">Passenger Manifest</p>
+                        <div class="bg-slate-900 p-2 rounded border border-slate-800 flex justify-between items-center">
+                            <span><b>1. ${name}</b> (${age} yrs, ${gender})</span>
+                            <span class="text-emerald-400 font-semibold">Seat: B3 - 21 (${berth})</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-slate-800 pt-3 font-bold text-slate-200">
+                        <span>Total Fare</span>
+                        <span class="text-emerald-400 text-base">${data.ticket.fare}</span>
+                    </div>
+                `;
+                document.getElementById('ticket-receipt-card').classList.remove('hidden');
+                document.getElementById('ticket-receipt-card').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function jumpToTracking() {
+            const pnr = document.getElementById('ticket-pnr').innerText;
+            document.getElementById('track-pnr-input').value = pnr;
+            switchTab('tracking');
+            fetchTrackingData();
+        }
+
+        async function fetchTrackingData() {
+            const pnr = document.getElementById('track-pnr-input').value;
+            if (!pnr) return alert("Enter a valid PNR number.");
+
+            const res = await fetch(`/api/track/${pnr}`);
+            const data = await res.json();
+
+            if (!data.success) {
+                alert(data.message);
+                return;
+            }
+
+            document.getElementById('map-container-card').classList.remove('hidden');
+            document.getElementById('tracking-train-title').innerText = `Live Tracking: ${data.ticket.train_no} ${data.ticket.train_name} (PNR: ${data.ticket.pnr})`;
+
+            if (!map) {
+                map = L.map('map').setView([20.5937, 78.9629], 5);
+                L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(map);
+            }
+
+            // Draw route stops & animated marker
+            const latLngs = data.stops.map(s => [s.lat, s.lng]);
+            L.polyline(latLngs, { color: '#3b82f6', weight: 4, opacity: 0.7 }).addTo(map);
+
+            data.stops.forEach(st => {
+                L.circleMarker([st.lat, st.lng], { radius: 6, color: '#10b981', fillColor: '#10b981', fillOpacity: 1 })
+                 .bindPopup(`<b>${st.name}</b><br>Scheduled: ${st.time}`)
+                 .addTo(map);
+            });
+
+            // Set simulated train position at start
+            if (trainMarker) map.removeLayer(trainMarker);
+            trainMarker = L.marker(latLngs[0], {
+                icon: L.divIcon({
+                    className: 'custom-train-icon',
+                    html: '<div style="background:#3b82f6;color:white;padding:6px;border-radius:50%;text-align:center;box-shadow:0 0 10px rgba(59,130,246,0.8);"><i class="fa-solid fa-train"></i></div>',
+                    iconSize: [30, 30]
+                })
+            }).addTo(map).bindPopup("<b>Current Train Position:</b> En Route").openPopup();
+
+            map.fitBounds(latLngs, { padding: [50, 50] });
+        }
+    </script>
+</body>
+</html>

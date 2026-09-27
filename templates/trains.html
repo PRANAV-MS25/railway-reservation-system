@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RailPulse - Available Trains</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen">
+    <nav class="bg-slate-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="bg-blue-600 text-xs font-bold px-2.5 py-1 rounded">RAIL</span>
+                <span class="text-xl font-bold tracking-wide">RailPulse System</span>
+            </div>
+            <div class="flex space-x-6 text-sm font-medium">
+                <a href="/home" class="hover:text-blue-400 transition">Home</a>
+                <a href="/tracking" class="hover:text-blue-400 transition">Live Tracking</a>
+                <a href="/" class="text-red-400 hover:text-red-300 transition">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto py-12 px-6">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-slate-200">
+            <h1 class="text-2xl font-bold text-slate-900 mb-6">Select Train & Coach Class</h1>
+
+            {% for train in trains %}
+            <div class="border border-slate-200 rounded-xl p-6 mb-6 bg-slate-50 transition duration-200 hover:shadow-md">
+                <div class="flex justify-between items-start border-b border-slate-200 pb-4 mb-4">
+                    <div>
+                        <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2.5 py-1 rounded">{{ train.train_no }}</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2">{{ train.train_name }}</h2>
+                    </div>
+                    <div class="text-right text-sm text-slate-600">
+                        <p><span class="font-semibold">Departure:</span> {{ train.departure }}</p>
+                        <p><span class="font-semibold">Arrival:</span> {{ train.arrival }}</p>
+                    </div>
+                </div>
+
+                <form action="/passenger" method="POST" class="space-y-4">
+                    <input type="hidden" name="train_no" value="{{ train.train_no }}">
+                    <input type="hidden" name="train_name" value="{{ train.train_name }}">
+                    <input type="hidden" name="base_fare" value="{{ train.base_fare }}">
+
+                    <label class="block text-sm font-semibold text-slate-700">Choose Coach Class:</label>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                        {% for code, info in coaches.items() %}
+                        <label class="border border-slate-300 rounded-lg p-3 text-center cursor-pointer hover:border-blue-600 hover:bg-blue-50 transition-all duration-200 bg-white">
+                            <input type="radio" name="coach_type" value="{{ code }}" required class="mb-1 accent-blue-600">
+                            <div class="text-sm font-bold text-slate-800">{{ code }}</div>
+                            <div class="text-xs text-slate-500">₹{{ (train.base_fare * info.multiplier) | int }}</div>
+                        </label>
+                        {% endfor %}
+                    </div>
+
+                    <button type="submit" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-semibold py-3 rounded-lg transition duration-200">
+                        Proceed with Selected Class
+                    </button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

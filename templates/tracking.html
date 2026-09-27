@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RailPulse - Live Tracking & Telemetry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body class="bg-slate-100 min-h-screen">
+    <!-- Top Navigation Bar -->
+    <nav class="bg-slate-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="bg-blue-600 text-xs font-bold px-2.5 py-1 rounded">RAIL</span>
+                <span class="text-xl font-bold tracking-wide">RailPulse System</span>
+            </div>
+            <div class="flex space-x-6 text-sm font-medium">
+                <a href="/home" class="hover:text-blue-400 transition">Home</a>
+                <a href="/tracking" class="text-blue-400 font-bold transition">Live Tracking</a>
+                <a href="/" class="text-red-400 hover:text-red-300 transition">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto py-8 px-6 space-y-6">
+        
+        <!-- Boarding Alert Banner -->
+        <div id="boarding-alert" class="hidden bg-emerald-500 text-white p-4 rounded-xl shadow-lg flex items-center justify-between animate-bounce">
+            <div class="flex items-center space-x-3">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                <span class="font-bold">Boarding Notice: Train is arriving at your boarding station (KSR Bengaluru)! Please proceed to Platform 3.</span>
+            </div>
+            <button onclick="document.getElementById('boarding-alert').style.display='none'" class="text-white font-bold px-3 py-1 bg-emerald-700 rounded-lg">Dismiss</button>
+        </div>
+
+        <!-- Telemetry Header Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900">Live Train Telemetry</h1>
+                <p class="text-sm text-slate-600 mt-1">Train: <span class="font-semibold text-slate-800">{{ ticket.train_no }} - {{ ticket.train_name }}</span> | PNR: <span class="font-semibold text-blue-600">{{ ticket.pnr }}</span></p>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span id="status-badge" class="px-3 py-1.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">Calculating Status...</span>
+            </div>
+        </div>
+
+        <!-- Map & Station Schedule Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Leaflet Map (Takes up 2 columns) -->
+            <div class="lg:col-span-2 bg-white rounded-2xl shadow-xl p-6 border border-slate-200">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold text-slate-900">Interactive Route Map & Smooth Telemetry</h2>
+                    <span id="speed-indicator" class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">Telemetry Speed: Normal</span>
+                </div>
+                <div id="map" class="w-full h-[450px] rounded-xl border border-slate-200 z-10"></div>
+            </div>
+
+            <!-- Complete Station Journey Schedule -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 border border-slate-200 flex flex-col h-[525px]">
+                <h2 class="text-lg font-bold text-slate-900 mb-4">Complete Journey Stops</h2>
+                <div class="overflow-y-auto space-y-3 pr-2 flex-1">
+                    {% for stop in stops %}
+                    <div class="p-3 rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-between text-sm">
+                        <div>
+                            <p class="font-bold text-slate-800">{{ stop.name }}</p>
+                            <p class="text-xs text-slate-500">Scheduled: {{ stop.time }}</p>
+                        </div>
+                        <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full">On Time</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Leaflet & Smooth Interpolation Script -->
+    <script>
+        const stops = {{ stops | tojson }};
+        
+        // Initialize Map
+        const map = L.map('map').setView([17.4340, 78.5010], 5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}inspect/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Fix standard tile layer URL fallback if needed
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        const latLngs = stops.map(stop => [stop.lat, stop.lng]);
+
+        // Add Markers for all stops
+        stops.forEach((stop, index) => {
+            L.marker([stop.lat, stop.lng]).addTo(map)
+                .bindPopup(`<b>${stop.name}</b><br>Scheduled Time: ${stop.time}`);
+        });
+
+        // Draw Route Line
+        const polyline = L.polyline(latLngs, {color: '#2563eb', weight: 4, opacity: 0.8}).addTo(map);
+        map.fitBounds(polyline.getBounds());
+
+        // Custom Train Icon
+        const trainIcon = L.divIcon({
+            className: 'custom-train-icon',
+            html: '<div style="background-color: #1e293b; color: white; padding: 6px; border-radius: 50%; box-shadow: 0 4px 6px rgba(0,0,0,0.3); font-size: 14px; text-align: center;">🚆</div>',
+            iconSize: [32, 32],
+            iconAnchor: [16, 16]
+        });
+
+        let trainMarker = L.marker(latLngs[0], {icon: trainIcon}).addTo(map)
+            .bindPopup("<b>Train 12627 (Karnataka Express)</b><br>Status: En Route").openPopup();
+
+        // Randomize Status Badge
+        const statuses = [
+            { text: "RUNNING ON TIME", class: "bg-emerald-100 text-emerald-800" },
+            { text: "DELAYED BY 15 MINS", class: "bg-amber-100 text-amber-800" },
+            { text: "RUNNING 5 MINS AHEAD", class: "bg-blue-100 text-blue-800" }
+        ];
+        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+        const statusBadge = document.getElementById('status-badge');
+        statusBadge.innerText = randomStatus.text;
+        statusBadge.className = `px-3 py-1.5 rounded-full text-xs font-bold ${randomStatus.class}`;
+
+        // Smooth Interpolation Animation Variables
+        let currentSegment = 0;
+        let progress = 0.0;
+        const speedMultiplier = 0.003; // Lower value = slower, more realistic gliding motion across states
+
+        function animateTrain() {
+            progress += speedMultiplier;
+
+            if (progress >= 1.0) {
+                progress = 0.0;
+                currentSegment++;
+                if (currentSegment >= latLngs.length - 1) {
+                    currentSegment = 0; // Loop seamlessly back to start for presentation flow
+                }
+                
+                // Trigger boarding notification banner when arriving at the second checkpoint
+                if (currentSegment === 1) {
+                    document.getElementById('boarding-alert').classList.remove('hidden');
+                }
+            }
+
+            // Linear interpolation between the current station and the next station
+            let startLat = latLngs[currentSegment][0];
+            let startLng = latLngs[currentSegment][1];
+            let endLat = latLngs[currentSegment + 1][0];
+            let endLng = latLngs[currentSegment + 1][1];
+
+            let currentLat = startLat + (endLat - startLat) * progress;
+            let currentLng = startLng + (endLng - startLng) * progress;
+
+            // Update marker coordinates smoothly
+            trainMarker.setLatLng([currentLat, currentLng]);
+
+            requestAnimationFrame(animateTrain);
+        }
+
+        // Start animation loop
+        requestAnimationFrame(animateTrain);
+    </script>
+</body>
+</html>
