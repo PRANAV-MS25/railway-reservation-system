@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RailPulse - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen">
+    <!-- Top Navigation Bar -->
+    <nav class="bg-slate-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="bg-blue-600 text-xs font-bold px-2.5 py-1 rounded">RAIL</span>
+                <span class="text-xl font-bold tracking-wide">RailPulse System</span>
+            </div>
+            <div class="flex space-x-6 text-sm font-medium">
+                <a href="/home" class="text-blue-400 font-bold transition">Home</a>
+                <a href="/tracking" class="text-slate-300 hover:text-white transition">Live Tracking</a>
+                <a href="/" class="text-red-400 hover:text-red-300 transition">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto py-12 px-6">
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-slate-200 transform transition duration-300">
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold text-slate-900">Book Train Tickets</h1>
+                <p class="text-slate-600 text-sm mt-1">Search for available routes across Indian Railways instantly.</p>
+            </div>
+
+            <form action="/search-trains" method="POST" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">From Station</label>
+                        <input type="text" name="from_station" required value="KSR Bengaluru (SBC)" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">To Station</label>
+                        <input type="text" name="to_station" required value="New Delhi (NDLS)" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Journey Date</label>
+                    <input type="date" name="journey_date" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-semibold py-3.5 rounded-lg shadow transition duration-200">
+                    Search Available Trains
+                </button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
