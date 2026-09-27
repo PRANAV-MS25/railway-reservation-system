@@ -23,6 +23,22 @@ RailPulse is a modern, full-stack railway reservation and live tracking web plat
 
 ---
 
+## 📸 Application Preview
+
+| Login & Authentication | Train Search & Selection |
+| :---: | :---: |
+| ![Login Page](login.png) | ![Train Search](train_and_coach.png) |
+
+| Booking & Passenger Details | Payment Gateway Interface |
+| :---: | :---: |
+| ![Booking](book.png) | ![Payment](payment.png) |
+
+| Generated Electronic Ticket | Live Map Telemetry & Tracking |
+| :---: | :---: |
+| ![Ticket](ticket.png) | ![Live Tracking](track.png) |
+
+---
+
 ## 🚀 Getting Started Locally
 
 Follow these steps to run RailPulse on your local machine:
@@ -31,14 +47,3 @@ Follow these steps to run RailPulse on your local machine:
    ```bash
    git clone [https://github.com/PRANAV-MS25/railway-reservation-system.git](https://github.com/PRANAV-MS25/railway-reservation-system.git)
    cd railway-reservation-system-main
-
-   Install dependencies (Flask):
-
-2. Bash
-pip install flask
-Run the application:
-
-3. Bash
-python app.py
-Access in your browser:
-Open http://127.0.0.1:5000 in your web browser.
