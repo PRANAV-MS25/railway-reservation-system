@@ -45,5 +45,23 @@ Follow these steps to run RailPulse on your local machine:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/PRANAV-MS25/railway-reservation-system.git](https://github.com/PRANAV-MS25/railway-reservation-system.git)
+   git clone [https://github.com/PRANAV-MS25/railway-reservation-system.git]
+   (https://github.com/PRANAV-MS25/railway-reservation-system.git)
    cd railway-reservation-system-main
+
+
+   Install dependencies (Flask):
+
+2. Bash
+pip install flask
+Run the application:
+
+3. Bash
+python app.py
+Access in your browser:
+Open http://127.0.0.1:5000 in your web browser.
+
+👨‍💻 Author
+M Pranav
+
+GitHub: @PRANAV-MS25
