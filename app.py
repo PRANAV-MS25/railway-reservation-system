@@ -30,15 +30,22 @@ TRAINS_DB = [
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        session['user'] = request.form.get('username')
+        form_values = list(request.form.values())
+        session['user'] = form_values[0] if form_values else "Passenger"
         return redirect(url_for('home'))
     return render_template('login.html')
 
 # Step 2: Home Dashboard
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
+    if request.method == 'POST':
+        form_values = list(request.form.values())
+        if form_values:
+            session['user'] = form_values[0]
+            
     if 'user' not in session:
         return redirect(url_for('login'))
+        
     return render_template('home.html', user=session.get('user'))
 
 # Step 3 & 4: Destination From-To Search
@@ -168,6 +175,7 @@ def download_ticket_pdf():
     p.save()
     
     buffer.seek(0)
+    
     return send_file(buffer, as_attachment=True, download_name=f"Ticket_{session.get('pnr')}.pdf", mimetype='application/pdf')
 
 if __name__ == '__main__':
