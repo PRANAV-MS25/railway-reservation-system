@@ -93,6 +93,7 @@ app.py — Flask Backend
 📍 Journey Stops & Status Matrix: Displays station arrival information with dynamic status badges such as RUNNING ON TIME, DELAYED, and AHEAD.
 🚨 Automated Boarding Alerts: Displays dynamic notifications when the train approaches or reaches the user's boarding station.
 🎨 Modern UI/UX: Built using Tailwind CSS with responsive layouts, glassmorphism/card styling, micro-transitions, and interactive form states.
+
 ```
 🚀 Tech Stack
 | Category                    | Technologies / Tools                   |
@@ -105,6 +106,7 @@ app.py — Flask Backend
 | **Animation**               | `requestAnimationFrame`                |
 | **Routing & Interactivity** | Linear interpolation, DOM manipulation |
 | **Layout**                  | Responsive Flexbox / CSS Grid          |
+
 
 ```
 ⚙️ Setup & Local Development
