@@ -90,14 +90,16 @@ app.py — Flask Backend
 13.Boarding alerts are triggered when the train approaches the selected boarding station.
 ```
 ✨ Key Features
-🎫 End-to-End Ticket Booking: Search train schedules, choose coach classes (1A, 2A, 3A, SL, CC) with dynamic pricing multipliers, input passenger details, and generate Electronic Reservation Slips (ERS).
-🗺️ Interactive Live Telemetry Map: Powered by Leaflet.js and OpenStreetMap, displaying complete geographic route lines and journey stops.
-🚆 Smooth Train Animation: Uses linear interpolation with requestAnimationFrame so the train moves smoothly along the route instead of jumping between locations.
-📍 Journey Stops & Status Matrix: Displays station arrival information with dynamic status badges such as RUNNING ON TIME, DELAYED, and AHEAD.
-🚨 Automated Boarding Alerts: Displays dynamic notifications when the train approaches or reaches the user's boarding station.
-🎨 Modern UI/UX: Built using Tailwind CSS with responsive layouts, glassmorphism/card styling, micro-transitions, and interactive form states.
-
-``
+| Feature                                | Description                                                                                                               |
+| :------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| **🎫 End-to-End Ticket Booking**       | Search train schedules, select coach classes, enter passenger details and generate Electronic Reservation Slips (ERS)     |
+| **🗺️ Interactive Live Telemetry Map** | Leaflet.js and OpenStreetMap display geographic routes and journey stops                                                  |
+| **🚆 Smooth Train Animation**          | Linear interpolation with `requestAnimationFrame` provides smooth GPS-like train movement                                 |
+| **📍 Journey Stops & Status Matrix**   | Displays station arrival information with `RUNNING ON TIME`, `DELAYED`, and `AHEAD` status badges                         |
+| **🚨 Automated Boarding Alerts**       | Displays notifications when the train approaches or reaches the user's boarding station                                   |
+| **🎨 Modern UI/UX**                    | Tailwind CSS interface with responsive layouts, glassmorphism/card styling, micro-transitions and interactive form states |
+```
+```
 🚀 Tech Stack
 | Category                    | Technologies / Tools                   |
 | :-------------------------- | :------------------------------------- |
