@@ -33,6 +33,7 @@ app.py — Flask Backend
 | **Boarding Alerts**   | Triggers notifications as the train approaches the boarding station |
 
 ```
+###
 🎫 Reservation System
 | Component             | Description                                               |
 | :-------------------- | :-------------------------------------------------------- |
