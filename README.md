@@ -71,6 +71,7 @@ app.py — Flask Backend
 | **User Alerts**          | Boarding notification based on train proximity  |
 
 
+
 ```
 🔄 System Flow
 1.User opens the RailPulse application.
