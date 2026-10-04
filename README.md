@@ -145,6 +145,7 @@ http://127.0.0.1:5000
 ``
 🎯 Project Highlights
 | Area                | Implementation                                |
+| :----------------------: | :--------------------------------------: |
 | **Reservation**     | End-to-end railway ticket booking workflow    |
 | **Coach Selection** | Multiple coach classes with dynamic pricing   |
 | **ERS**             | Electronic Reservation Slip generation        |
