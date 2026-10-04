@@ -130,19 +130,25 @@ Open:
 http://127.0.0.1:5000
 
 ```
-📸 Application Preview
-1. Authentication & Train Search
-|  Login & Authentication  |      Train Search & Coach Selection      |
-| :----------------------: | :--------------------------------------: |
+## 📸 Application Preview
+
+### 1. Authentication & Train Search
+
+| Login & Authentication | Train Search & Coach Selection |
+| :---: | :---: |
 | ![Login Page](login.png) | ![Train Search](train%20and%20coach.png) |
-2. Booking & Payment
+
+### 2. Booking & Payment
+
 | Booking & Passenger Details | Payment Gateway Interface |
-| :-------------------------: | :-----------------------: |
-|     ![Booking](book.png)    |  ![Payment](payment.png)  |
-3. Ticket & Live Tracking
-|    Generated Electronic Ticket   | Live Map Telemetry & Tracking |
-| :------------------------------: | :---------------------------: |
-| ![Electronic Ticket](ticket.png) |  ![Live Tracking](track.png)  |
+| :---: | :---: |
+| ![Booking](book.png) | ![Payment](payment.png) |
+
+### 3. Ticket & Live Tracking
+
+| Generated Electronic Ticket | Live Map Telemetry & Tracking |
+| :---: | :---: |
+| ![Electronic Ticket](ticket.png) | ![Live Tracking](track.png) |
 
 🌐 Repository
 
