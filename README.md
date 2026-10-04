@@ -34,14 +34,15 @@ app.py — Flask Backend
 
 ```
 🎫 Reservation System
-| Component             | Description                                        |
-| :-------------------- | :------------------------------------------------- |
-| **Train Search**      | Search available train schedules                   |
-| **Coach Classes**     | Supports 1A, 2A, 3A, SL and CC                     |
-| **Dynamic Pricing**   | Applies class-specific pricing multipliers         |
-| **Passenger Details** | Captures passenger information for the reservation |
-| **Ticket Generation** | Generates an Electronic Reservation Slip (ERS)     |
-| **Payment Interface** | Provides the payment-stage booking interface       |
+| Component             | Description                                               |
+| :-------------------- | :-------------------------------------------------------- |
+| **Train Search**      | Search available train schedules                          |
+| **Coach Classes**     | Supports 1A, 2A, 3A, SL and CC                            |
+| **Dynamic Pricing**   | Applies class-specific pricing multipliers                |
+| **Passenger Details** | Captures passenger information for the reservation        |
+| **Ticket Booking**    | Processes the selected train, coach and passenger details |
+| **Payment Interface** | Provides the payment-stage booking interface              |
+| **Ticket Generation** | Generates an Electronic Reservation Slip (ERS)            |
 
 ```
 🗺️ Live Telemetry System
