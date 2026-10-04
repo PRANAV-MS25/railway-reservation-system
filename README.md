@@ -32,8 +32,7 @@ app.py — Flask Backend
 | **Journey Status**    | Handles train status and station-level journey information          |
 | **Boarding Alerts**   | Triggers notifications as the train approaches the boarding station |
 
-```
-###
+``
 🎫 Reservation System
 | Component             | Description                                               |
 | :-------------------- | :-------------------------------------------------------- |
@@ -45,7 +44,7 @@ app.py — Flask Backend
 | **Payment Interface** | Provides the payment-stage booking interface              |
 | **Ticket Generation** | Generates an Electronic Reservation Slip (ERS)            |
 
-```
+``
 🗺️ Live Telemetry System
 
 | Component               | Description                                                      |
@@ -59,7 +58,7 @@ app.py — Flask Backend
 | **Status Updates**      | Displays `RUNNING ON TIME`, `DELAYED`, and `AHEAD` states        |
 | **Boarding Alerts**     | Notifies the user when the train approaches the boarding station |
 
-```
+``
 🧠 Telemetry & Animation Architecture
 | Stage                    | Implementation                                  |
 | :----------------------- | :---------------------------------------------- |
@@ -98,7 +97,7 @@ app.py — Flask Backend
 🚨 Automated Boarding Alerts: Displays dynamic notifications when the train approaches or reaches the user's boarding station.
 🎨 Modern UI/UX: Built using Tailwind CSS with responsive layouts, glassmorphism/card styling, micro-transitions, and interactive form states.
 
-```
+``
 🚀 Tech Stack
 | Category                    | Technologies / Tools                   |
 | :-------------------------- | :------------------------------------- |
@@ -141,7 +140,7 @@ http://127.0.0.1:5000
 |    Generated Electronic Ticket   | Live Map Telemetry & Tracking |
 | :------------------------------: | :---------------------------: |
 | ![Electronic Ticket](ticket.png) |  ![Live Tracking](track.png)  |
-```
+``
 🎯 Project Highlights
 | Area                | Implementation                                |
 | :------------------ | :-------------------------------------------- |
