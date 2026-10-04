@@ -18,7 +18,8 @@ railway-reservation-system-main/
 ├── ticket.png
 └── track.png
 
-```🗄️ Core Components & Architecture
+```
+🗄️ Core Components & Architecture
 app.py — Flask Backend
 | Component             | Description                                                         |
 | :-------------------- | :------------------------------------------------------------------ |
