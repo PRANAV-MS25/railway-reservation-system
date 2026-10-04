@@ -150,6 +150,22 @@ http://127.0.0.1:5000
 | :---: | :---: |
 | ![Electronic Ticket](ticket.png) | ![Live Tracking](track.png) |
 
+🎯 Project Highlights
+| Area                     | Implementation                                  |
+| :----------------------- | :---------------------------------------------- |
+| **Reservation**          | End-to-end railway ticket booking workflow      |
+| **Coach Selection**      | Multiple coach classes with dynamic pricing     |
+| **Passenger Management** | Passenger information collection during booking |
+| **Payment**              | Payment-stage booking interface                 |
+| **ERS**                  | Electronic Reservation Slip generation          |
+| **Live Tracking**        | Interactive Leaflet-based train tracking        |
+| **Telemetry**            | Smooth GPS-like train movement                  |
+| **Route Mapping**        | Complete route and journey-stop visualization   |
+| **Train Status**         | Dynamic running status indicators               |
+| **Alerts**               | Automated boarding notifications                |
+| **UI/UX**                | Responsive Tailwind CSS interface               |
+
+
 🌐 Repository
 
 GitHub Repository: PRANAV-MS25/railway-reservation-system
